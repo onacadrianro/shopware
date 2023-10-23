@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="843cfa07-3330-4b5f-86ad-0e6e56c956d3" name="Dockware" url="http://localhost">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="localhost" port="22" sshConfigId="ed38c592-a83c-45fa-856a-635c27da515b" sshConfig="dockware@localhost:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
