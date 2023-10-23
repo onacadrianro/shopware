@@ -1,0 +1,30 @@
+{
+    "name": "shopware/b2bacl",
+    "description": "B2b Acl",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "shopware AG"
+        }
+    ],
+    "extra": {
+        "shopware-plugin-class": "B2bAcl\\B2bAcl",
+        "copyright": "(c) by shopware AG",
+        "label": {
+            "de-DE": "B2b Acl",
+            "en-GB": "B2b Acl"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "B2bAcl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "B2bAcl\\Tests\\": "tests/"
+        }
+    }
+}

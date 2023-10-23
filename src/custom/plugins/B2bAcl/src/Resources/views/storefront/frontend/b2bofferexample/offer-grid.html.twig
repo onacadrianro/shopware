@@ -1,0 +1,117 @@
+{% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bgrid/_grid-table.html.twig' %}
+
+{% block b2b_grid_col_sort %}
+    test
+    <option value="name::asc"{% if gridState.sortBy == 'name::asc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.NameAsc'|trans }}
+    </option>
+    <option value="name::desc"{% if gridState.sortBy == 'name::desc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.NameDesc'|trans }}
+    </option>
+    <option value="description::asc"{% if gridState.sortBy == 'description::asc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.DescriptionAsc'|trans }}
+    </option>
+    <option value="description::desc"{% if gridState.sortBy == 'description::desc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.DescriptionDesc'|trans }}
+    </option>
+{% endblock %}
+
+{% block b2b_grid_table_head %}
+    <tr>
+        <th width="20%">{{ 'b2b.b2bofferexample.OfferName'|trans }}</th>
+        <th>{{ 'b2b.b2bofferexample.OfferDescription'|trans }}</th>
+        <th width="10%">{{ 'b2b.b2bofferexample.Action'|trans }}</th>
+    </tr>
+{% endblock %}
+
+{% block b2b_grid_table_row %}
+    <tr
+        data-row.id="{{ row.id }}"
+        class="{{ b2b_acl('b2bofferexample', 'list') }}"
+        data-target="offer-detail"
+        data-href="{{ path('frontend.b2b.b2bofferexample.detail') }}?id={{ row.id }}"
+    >
+        {% block b2b_offer_grid_row_inner %}
+            {% block b2b_offer_grid_row_inner_data %}
+                <td
+                    data-label="{{ 'b2b.NameLabel'|trans }}"
+                    class="is--align-center"
+                >
+                    {{ row.name }}
+                </td>
+                <td
+                    data-label="{{ 'b2b.DescriptionLabel'|trans }}"
+                    class="is--align-center"
+                >
+                    {{ row.description }}
+                </td>
+
+                <td
+                    data-label="{{ 'b2b.ActionsLabel'|trans }}"
+                    class="col-actions"
+                >
+                    {% block b2b_offer_grid_row_inner_actions_inner_form %}
+
+                        <button
+                            title="{{ 'b2b.EditContingentGroup'|trans }}"
+                            type="button"
+                            class="btn btn-light ajax-panel-link b2b--modal-link {{ b2b_acl('b2bofferexample', 'detail') }}"
+                            data-href="{{ path('frontend.b2b.b2bofferexample.detail') }}?id={{ row.id }}"
+                            data-target="offer-detail"
+                            data-modal-size="md"
+                        >
+                            {% sw_icon 'paper-pencil-signed' %}
+                        </button>
+
+                        <form
+                            method="post"
+                            action="{{ path('frontend.b2b.b2bofferexample.remove') }}"
+                            class="form--inline {{ b2b_acl('b2bofferexample', 'remove') }}"
+                            data-csrf-token="{{ sw_csrf('frontend.b2b.b2bofferexample.remove', { mode: 'token' }) }}"
+                        >
+                            {% block b2b_offer_grid_row_inner_actions_inner_form_csrf %}
+                                {{ sw_csrf('frontend.b2b.b2bconfirm.remove') }}
+                            {% endblock %}
+
+                            {% block b2b_offer_grid_row_inner_actions_inner_form_inner %}
+                                {% block b2b_offer_grid_row_inner_actions_inner_form_inputs %}
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value="{{ row.id.getValue }}"
+                                    />
+                                {% endblock %}
+
+                                {% block b2b_offer_grid_row_inner_actions_inner_form_submit %}
+                                    <button
+                                        type="submit"
+                                        title="{{ 'b2b.DeleteOffer'|trans }}"
+                                        class="btn btn-light component-action-delete"
+                                        data-confirm="true"
+                                        data-confirm-url="{{ path('frontend.b2b.b2bconfirm.remove') }}"
+                                    >
+                                        {% sw_icon 'trash' %}
+                                    </button>
+                                {% endblock %}
+                            {% endblock %}
+                        </form>
+                    {% endblock %}
+                </td>
+            {% endblock %}
+        {% endblock %}
+
+
+
+    {#    <tr data-row-id="{{ row->id }}" class="ajax-panel-link {{ b2b_acl('b2bofferexample', 'detail') }}" data-target="offer-detail" data-href="{{ path('frontend.b2b.b2bofferexample.detail') }}?id={{ row.id }}">#}
+    {#        <td>{{ row->name }}</td>#}
+    {#        <td>{{ row->description}}</td>#}
+    {#        <td class="col-actions">#}
+    {#            <form action="{{ path('frontend.b2b.b2bofferexample.remove')}}" method="post">#}
+    {#                <input type="hidden" name="id" value="{{ row->id }}">#}
+    {#                <button type="submit" class="btn btn-primary is--small component-action-delete {{ b2b_acl('b2bofferexample', 'remove') }}">#}
+    {#                    <i class="icon--trash"></i>#}
+    {#                </button>#}
+    {#            </form>#}
+    {#        </td>#}
+    {#    </tr>#}
+{% endblock %}

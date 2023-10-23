@@ -1,0 +1,17 @@
+{% block b2bofferexamnple_edit_modal %}
+    <div class="b2b--modal">
+        <div class="block-content">
+
+            <div class="topbar">
+                <h3 class="panel--title">{{ 'b2bofferexample.OfferDetail'|trans}}</h3>
+            </div>
+
+            <div class="scrollable with--padding">
+                <form action="{{ path('frontend.b2b.b2bofferexample.update') }}" method="post" data-ajax-panel-trigger-reload="offer-grid" class="{{ b2b_acl('b2bofferexample', 'update') }}">
+                    <input type="hidden" name="id" value="{{ id }}"/>
+                    {% sw_include '@B2bAcl/storefront/frontend/b2bofferexample/_form.html.twig' %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

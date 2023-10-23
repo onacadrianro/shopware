@@ -1,0 +1,43 @@
+{% block blog_posts_list %}
+        <sw-page class="blog-posts-list">
+            <template slot="smart-bar-header">
+                <h2>
+                    {% block blog_posts_list_smart_bar_header_title_text %}
+                        {{ $tc('blog-posts.list.textBlogOverview') }}
+                    {% endblock %}
+                    {% block blog_posts_list_smart_bar_header_amount %}
+                        <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                        ({{ total }})
+                        </span>
+                    {% endblock %}
+                </h2>
+            </template>
+
+            {% block blog_posts_list_smart_bar_actions %}
+                <template slot="smart-bar-actions">
+                    {% block blog_posts_list_smart_bar_actions_add %}
+{#                        //still need to create controller#}
+                        <sw-button :routerLink="{ name: 'blog-posts.create' }" variant="primary">
+                            {{ $tc('blog-posts.list.buttonAddBlogEntry') }}
+                        </sw-button>
+                    {% endblock %}
+                </template>
+            {% endblock %}
+
+            <template #content>
+                {% block blog_posts_list_content %}
+                    <sw-entity-listing
+                        v-if="blogPosts"
+                        :items="blogPosts"
+                        :repository="blogPostsRepository"
+                        :showSelection="false"
+                        :columns="columns"
+                        detailRoute="blog.module.detail">
+
+{#                        //add page column to view in admin#}
+                    </sw-entity-listing>
+                {% endblock %}
+            </template>
+
+        </sw-page>
+{% endblock %}

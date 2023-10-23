@@ -1,0 +1,30 @@
+{% set url = path('frontend.b2b.b2bofferexample.grid') %}
+
+{% block b2b_offerexample_grid %}
+    <div class="panel has--border is--rounded">
+        <div class="panel--title is--underline">
+
+            <div class="block-group b2b--block-panel">
+                <div class="block block--title">
+                    <h3>{{ 'b2b.b2bofferexample.ManageOffers'|trans }}</h3>
+                </div>
+                <div class="block block--actions">
+
+                    <button
+                        title="{{ 'b2b.b2bofferexample.CreateOffer'|trans }}"
+                        type="button"
+                        class="btn btn-light ajax-panel-link b2b--modal-link component-action-create {{ b2b_acl('b2bofferexample', 'new') }}"
+                        data-target="offer-detail"
+                        data-modal-size="xl"
+                        data-href="{{ path('frontend.b2b.b2bofferexample.new', { offerId: row.id.getValue }) }}"
+                    >
+                        {% sw_icon 'paper-pencil-signed' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="panel--body is--wide">
+            {% sw_include '@B2bAcl/storefront/frontend/b2bofferexample/offer-grid.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

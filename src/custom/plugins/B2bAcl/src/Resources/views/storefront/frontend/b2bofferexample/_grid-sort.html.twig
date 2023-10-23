@@ -1,0 +1,17 @@
+{% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bgrid/_grid-sort.html.twig' %}
+
+{% block b2b_grid_col_sort %}
+    test
+    <option value="name::asc"{% if gridState.sortBy == 'name::asc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.NameAsc'|trans }}
+    </option>
+    <option value="name::desc"{% if gridState.sortBy == 'name::desc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.NameDesc'|trans }}
+    </option>
+    <option value="description::asc"{% if gridState.sortBy == 'description::asc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.DescriptionAsc'|trans }}
+    </option>
+    <option value="description::desc"{% if gridState.sortBy == 'description::desc' %} selected="selected"{% endif %}></option>
+    {{ 'b2b.b2bofferexample.DescriptionDesc'|trans }}
+    </option>
+{% endblock %}

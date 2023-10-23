@@ -1,0 +1,24 @@
+{% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal-content.html.twig' %}
+
+{% set modalSettings = {
+    navigation: false
+} %}
+
+{% block b2b_modal_base_content_inner_topbar_headline %}
+    {{ 'b2b.b2bofferexample.CreateOffer'|trans }}
+{% endblock %}
+
+{% block b2b_modal_base_content_inner_scrollable_inner_content_inner %}
+
+    <form
+        action="{{ path('frontend.b2b.b2bofferexample.create') }}"
+        method="post"
+        class="form--inline {{ b2b_acl('b2bofferlineitemreference', 'remove') }}"
+        data-ajax-panel-trigger-reload="offer-grid"
+        data-csrf-token="{{ sw_csrf('frontend.b2b.b2bofferexample.create', { mode: 'token' }) }}"
+    >
+        {{ sw_csrf('frontend.b2b.b2bofferexample.create') }}
+        {% sw_include '@B2bAcl/storefront/frontend/b2bofferexample/_form.html.twig' %}
+    </form>
+
+{% endblock %}

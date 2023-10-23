@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="B2bAcl\OfferExample\OfferValidationService"
+                 id="b2b_acl.validation_service">
+            <argument id="b2b_common.validation_builder" type="service"/>
+            <argument id="validator" type="service"/>
+        </service>
+
+        <service class="B2bAcl\OfferExample\OfferRepository"
+                 id="b2b_acl.repository">
+            <argument id="dbal_connection" type="service"/>
+            <argument id="b2b_common.repository_dbal_helper" type="service"/>
+            <argument id="b2b_acl.acl_repository" type="service"/>
+        </service>
+
+        <service class="B2bAcl\OfferExample\OfferCrudService"
+                 id="b2b_acl.crud_service">
+            <argument id="b2b_acl.repository" type="service"/>
+            <argument id="b2b_acl.validation_service" type="service"/>
+            <argument id="b2b_acl.acl_repository" type="service"/>
+        </service>
+
+        <service id="b2b_acl.grid_helper" class="Shopware\B2B\Common\Controller\GridHelper">
+            <argument type="service" id="b2b_acl.repository"/>
+        </service>
+
+        <service id="b2b_acl.acl_repository" class="Shopware\B2B\Acl\Framework\AclRepository">
+            <factory service="b2b_acl.repository_factory" method="createRepository"/>
+            <argument type="constant">B2bAcl\OfferExample\OfferRepository::TABLE_NAME</argument>
+        </service>
+
+        <service class="B2bAcl\OfferExample\OfferAclTable" id="b2b_acl.offer_acl_table">
+            <tag name="b2b_acl.table"/>
+        </service>
+
+        <service class="B2bAcl\Controllers\Frontend\B2bOfferController" id="b2b_acl.controller">
+            <argument id="b2b_acl.repository" type="service"/>
+            <argument id="b2b_front_auth.authentication_service" type="service"/>
+            <argument id="b2b_acl.crud_service" type="service"/>
+            <argument id="b2b_role.grid_helper" type="service"/>
+
+            <tag name="b2b.controller" route="b2bofferexample"/>
+        </service>
+
+    </services>
+</container>

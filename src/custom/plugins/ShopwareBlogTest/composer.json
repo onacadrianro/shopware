@@ -1,0 +1,26 @@
+{
+    "name": "shopwareblogtest",
+    "description": "Blog",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "keywords": ["blog"],
+    "authors":[
+        {
+            "name": "Adrian Robert Onac",
+            "email": "onacadrianr@yahoo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">= 7.2"
+    },
+    "require-dev": {
+        "shopware/core": "*",
+        "shopware/storefront": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlogTest\\": "src/"
+        }
+    }
+}
